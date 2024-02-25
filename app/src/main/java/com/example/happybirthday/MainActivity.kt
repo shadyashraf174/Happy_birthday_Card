@@ -6,12 +6,16 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,11 +33,9 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     GreetingText(
-                        message ="Happy Birthday Ous!",
+                        message = "Happy Birthday Ous!",
                         from = "From Shady",
-
-
-                        )
+                    )
                 }
             }
         }
@@ -41,24 +43,31 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GreetingText(message: String, from:String, modifier: Modifier = Modifier) {
-    Column (
-        verticalArrangement = Arrangement.Center,
-        modifier = modifier
-    ){
-        Text(
-            text = message,
-            fontSize = 100.sp,
-            lineHeight = 116.sp,
-            textAlign = TextAlign.Center
+fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = R.drawable.androidparty),
+            contentDescription = null,
         )
-        Text(
-            text = from,
-            fontSize = 36.sp,
-            modifier = Modifier
-                .padding(16.dp)
-
-        )
+        Column(
+            verticalArrangement = Arrangement.Center,
+            modifier = modifier
+        ) {
+            Text(
+                text = message,
+                fontSize = 100.sp,
+                lineHeight = 116.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.offset(y = 100.dp)
+            )
+            Text(
+                text = from,
+                fontSize = 36.sp,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .offset(y = 100.dp)
+            )
+        }
     }
 }
 
